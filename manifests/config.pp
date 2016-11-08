@@ -51,10 +51,13 @@ class powerdns::config {
   } ->
 
   file { "${config_path}/pdns.d":
-    ensure => directory,
-    owner  => $config_owner,
-    group  => $config_group,
-    mode   => '0755'
+    ensure  => directory,
+    owner   => $config_owner,
+    group   => $config_group,
+    purge   => $config_purge,
+    recurse => $config_purge,
+    force   => $config_purge,
+    mode    => '0755'
   } ->
 
   concat { "${config_path}/pdns.conf":
